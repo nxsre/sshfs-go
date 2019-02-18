@@ -1,0 +1,26 @@
+---
+language: go
+
+# we support the most two recent releases, and (hopefully) the tip.
+go:
+  - 1.5
+  - 1.6
+  - tip
+
+cache:
+  directories:
+    - vendor
+
+install:
+  - mkdir tools
+  - curl -L https://github.com/Masterminds/glide/releases/download/0.9.3/glide-0.9.3-linux-amd64.tar.gz | tar -xzv --strip-components=1 -C tools
+  - chmod +x tools/glide
+  - export PATH=$(pwd)/tools:$PATH
+  - glide install
+
+script:
+  - make
+
+matrix:
+  allow_failures:
+    - go: tip
