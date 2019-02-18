@@ -9,4 +9,4 @@ if ! docker images | grep -q sshfs-build; then
     docker build -t sshfs-build release/
 fi
 
-docker run --rm -v $(pwd):/go/src/github.com/soopsio/sshfs sshfs-build /bin/sh -c 'cd /go/src/github.com/soopsio/sshfs && env GOOS=linux GOARCH=amd64 go build .'
+docker run --rm -v $(pwd):/go/src/github.com/soopsio/sshfs-go sshfs-build /bin/sh -c 'cd /go/src/github.com/soopsio/sshfs-go && env GOOS=linux GOARCH=amd64 go build .'

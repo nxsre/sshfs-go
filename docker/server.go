@@ -16,7 +16,7 @@ package docker
 
 import (
 	"github.com/sirupsen/logrus"
-	"github.com/soopsio/sshfs/fs"
+	"github.com/soopsio/sshfs-go/fs"
 	"golang.org/x/crypto/ssh"
 )
 

@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"github.com/getlantern/errors"
 	"github.com/pkg/sftp"
-	"github.com/soopsio/sshfs/fs"
+	"github.com/soopsio/sshfs-go/fs"
 	"log"
 	"net/url"
 	"os"
