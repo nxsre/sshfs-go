@@ -63,16 +63,16 @@ func (d *Driver) Create(r *volume.CreateRequest) error {
 	log.Println("Create Volume:")
 	remotePath := filepath.Join(d.config.Root, r.Name)
 	stat, err := d.sftp.Stat(remotePath)
-	log.Println(remotePath, stat, err)
+	//log.Println(remotePath, stat, err)
 	if err != nil {
 		if err == os.ErrNotExist {
 			err = d.sftp.Mkdir(remotePath)
-			log.Println(remotePath, stat, err)
+			//log.Println(remotePath, stat, err)
 			if err != nil {
 				return err
 			}
 			stat, _ = d.sftp.Stat(remotePath)
-			log.Println(remotePath, stat, err)
+			//log.Println(remotePath, stat, err)
 		} else {
 			return err
 		}
@@ -146,7 +146,6 @@ func (d *Driver) Path(r *volume.PathRequest) (*volume.PathResponse, error) {
 
 // Mount handles creating and mounting servers
 func (d *Driver) Mount(r *volume.MountRequest) (*volume.MountResponse, error) {
-	log.Println("88888888888888")
 	d.m.Lock()
 	defer d.m.Unlock()
 

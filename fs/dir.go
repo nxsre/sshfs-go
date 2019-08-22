@@ -210,7 +210,7 @@ var _ fs.HandleReadDirAller = (*Dir)(nil)
 // ReadDirAll returns a list of sshfs
 func (d *Dir) ReadDirAll(ctx context.Context) ([]fuse.Dirent, error) {
 	logrus.WithField("dir", d).Debug("handling Dir.ReadDirAll call")
-	log.Println(d.name, d.path, d.isroot, d.Path())
+	//log.Println(d.name, d.path, d.isroot, d.Path())
 	//d.Lock()
 	//defer d.Lock()
 	dirs := []fuse.Dirent{}

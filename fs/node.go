@@ -7,7 +7,6 @@ import (
 	"github.com/sirupsen/logrus"
 	sq "github.com/yireyun/go-queue"
 	"io"
-	"log"
 	"net/http"
 	"path/filepath"
 	"strconv"
@@ -35,15 +34,15 @@ func DebugServer(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, string(jb))
 }
 
-func init() {
-	http.HandleFunc("/debug", DebugServer)
-	go func() {
-		err := http.ListenAndServe(":12345", nil)
-		if err != nil {
-			log.Fatal("ListenAndServe: ", err)
-		}
-	}()
-}
+//func init() {
+//	http.HandleFunc("/debug", DebugServer)
+//	go func() {
+//		err := http.ListenAndServe(":12345", nil)
+//		if err != nil {
+//			log.Fatal("ListenAndServe: ", err)
+//		}
+//	}()
+//}
 
 // InitInode inode
 func InitInode(inode uint64) {
