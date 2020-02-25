@@ -18,16 +18,15 @@ import (
 	"golang.org/x/crypto/ssh"
 	"log"
 	"net"
-	"os"
 )
 
 // NewConfig creates a new config
-func NewConfig(user, password string) *ssh.ClientConfig {
+func NewConfig(user, password string, privateKeyPath string) *ssh.ClientConfig {
 	auth := []ssh.AuthMethod{
 		ssh.Password(password),
 	}
 
-	publicKey, err := PublicKeyFile(os.Getenv("HOME") + `/.ssh/id_rsa`)
+	publicKey, err := PublicKeyFile(privateKeyPath)
 	if err == nil {
 		auth = append(auth, publicKey)
 	} else {

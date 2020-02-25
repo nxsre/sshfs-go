@@ -16,6 +16,7 @@ package cmd
 
 import (
 	"errors"
+	"os"
 
 	"github.com/docker/go-plugins-helpers/volume"
 	"github.com/sirupsen/logrus"
@@ -45,7 +46,7 @@ var dockerCmd = &cobra.Command{
 			Root:       viper.GetString("root"),
 			MountPoint: args[0],
 			SSHServer:  viper.GetString("address"),
-			SSHConfig:  fs.NewConfig(viper.GetString("username"), viper.GetString("password")),
+			SSHConfig:  fs.NewConfig(viper.GetString("username"), viper.GetString("password"), viper.GetString("private-key")),
 		})
 		if err != nil {
 			logrus.WithError(err).Fatal("driver init failed")
@@ -80,5 +81,6 @@ func init() {
 	dockerCmd.Flags().StringP("username", "u", "root", "ssh username")
 	dockerCmd.Flags().StringP("password", "p", "", "ssh password")
 	dockerCmd.Flags().StringP("root", "r", "/tmp", "remote root")
+	dockerCmd.Flags().StringP("private-key", "i", os.Getenv("HOME")+`/.ssh/id_rsa`, "path to private ssh key")
 	dockerCmd.Flags().StringP("socket", "s", "/run/docker/plugins/ssh.sock", "socket address to communicate with docker")
 }
